@@ -77,6 +77,7 @@ void forgot_password ()
 {
     system ("cls");
     HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    accounts_list.clear();
     load_details();
     accounts_list.pop_back();
     // for (auto it = accounts_list.begin(); it != accounts_list.end(); it++)
