@@ -239,6 +239,18 @@ void delete_a_status (account_details logged_user)
 
 void view_followers (account_details logged_user)
 {
+    accounts_list.clear();
+    load_details();
+    accounts_list.pop_back();
+    for (auto it = accounts_list.begin(); it != accounts_list.end(); it++)
+    {
+        if ((*it).username == logged_user.username)
+        {
+            logged_user.num_of_followers = (*it).num_of_followers;
+            logged_user.num_of_following = (*it).num_of_following;
+            break;
+        }
+    }
     system ("cls");
     string followers_input;
     followers_input = "__LISTS/" + logged_user.username + "_FLWRS_LST.txt";
@@ -349,6 +361,18 @@ void view_followers (account_details logged_user)
 
 void view_following (account_details logged_user)
 {
+    accounts_list.clear();
+    load_details();
+    accounts_list.pop_back();
+    for (auto it = accounts_list.begin(); it != accounts_list.end(); it++)
+    {
+        if ((*it).username == logged_user.username)
+        {
+            logged_user.num_of_followers = (*it).num_of_followers;
+            logged_user.num_of_following = (*it).num_of_following;
+            break;
+        }
+    }
     system ("cls");
     string filename;
     filename = "__LISTS/" + logged_user.username + "_FLWING_LST.txt";
