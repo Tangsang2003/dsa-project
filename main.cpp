@@ -1,6 +1,8 @@
 #include "codelog.cpp"
 #include "account_details.cpp"
 #include "global_functions.cpp"
+#include "follow_functions.cpp"
+#include "logged_functions.cpp"
 #include <conio.h>
 int main()
 {

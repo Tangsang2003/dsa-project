@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <iomanip>
-
 void account_details :: get_first_name()
 {
     int flag = 0;
@@ -348,11 +347,30 @@ void account_details :: get_details ()
     system ("CLS");
     HANDLE h = GetStdHandle (STD_OUTPUT_HANDLE);
     cout << endl;
+    ifstream codelog_title ("titles/codelog_title.txt");
+    string title;
+    SetConsoleTextAttribute (h, 2);
+    for (int i = 0; i < 60; i++)
+    {
+        cout << char (196);
+    }
+    cout << endl;
+    if (codelog_title.is_open())
+    {
+        SetConsoleTextAttribute (h, 5);
+        while (!codelog_title.eof())
+        {
+            getline (codelog_title, title);
+            cout << title << endl;
+        }
+        SetConsoleTextAttribute (h, 2);
+    }
+    codelog_title.close();
     cout<< char(219) << " WELCOME " << char (219);
     cout << endl;
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout << endl <<endl;
     get_first_name();
@@ -360,28 +378,28 @@ void account_details :: get_details ()
     cout << endl;
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout <<endl <<endl;
     get_age();
     cout <<endl;
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout << endl;
     get_date_of_birth();
     cout << endl;
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout << endl;
     get_email();
     cout << endl;
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout << endl;
     get_phonenumber();
@@ -389,7 +407,7 @@ void account_details :: get_details ()
     cout << endl;
     for (int i = 0; i < 75; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     cout << endl;
     
@@ -397,7 +415,7 @@ void account_details :: get_details ()
     cout << endl <<endl;
     for (int i = 0; i < 75; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
     /*****************Ignore the comments of this function below this *****************/
     // cout << endl <<endl;

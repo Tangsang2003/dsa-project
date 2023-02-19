@@ -40,7 +40,6 @@ void codelog ::intro()
     system("CLS");
 
     system("COLOR 3F");
-
     // This class is used to get height and width of the console window
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
@@ -49,7 +48,7 @@ void codelog ::intro()
 
     // Used to vertically center align the box
 
-    for (int i = 0; i < (height - 5) / 2; i++)
+    for (int i = 0; i < (height - 8) / 2; i++)
     {
         cout << endl;
     }
@@ -87,7 +86,6 @@ void codelog ::intro()
     {
         cout << " ";
     }
-
     for (int i = 0; i < 80; i++)
     {
         cout << "=";
@@ -107,6 +105,7 @@ void codelog ::intro()
     /*****************************For new Screen*******************************************/
 
     system("COLOR 02");
+    HANDLE h = GetStdHandle (STD_OUTPUT_HANDLE);
 
     // This loop is for vertical center alignment of the content
     for (int i = 0; i < (height - 15) / 2; i++)
@@ -119,11 +118,12 @@ void codelog ::intro()
     {
         cout << " ";
     }
-
+    SetConsoleTextAttribute (h, 2);
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
+    SetConsoleTextAttribute (h, 15);
     // Two new lines for the line 'Project By'
     cout << endl <<endl;
 
@@ -136,11 +136,12 @@ void codelog ::intro()
     {
         cout << " ";
     }
-
+    SetConsoleTextAttribute (h, 2);
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
+    SetConsoleTextAttribute(h, 15);
 
     // Name And Roll Number
     cout << endl <<endl;
@@ -156,12 +157,12 @@ void codelog ::intro()
     {
         cout << " ";
     }
-
+    SetConsoleTextAttribute (h, 2);
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
-
+    SetConsoleTextAttribute (h, 15);
     cout << endl
          << endl;
 
@@ -174,7 +175,7 @@ void codelog ::intro()
     {
         cout << " ";
     }
-    cout << setw(20) << left << "Template Thapa" << setw(1) << left << " " << setw(20) << right << "PUL077BEI046" << endl;
+    cout << setw(20) << left << "Susan Thapa" << setw(1) << left << " " << setw(20) << right << "PUL077BEI046" << endl;
     for (int i = 0; i < (width - 41) / 2; i++)
     {
         cout << " ";
@@ -190,11 +191,12 @@ void codelog ::intro()
     {
         cout << " ";
     }
+    SetConsoleTextAttribute (h, 2);
     for (int i = 0; i < 60; i++)
     {
-        cout << "=";
+        cout << char (196);
     }
-
+    SetConsoleTextAttribute (h, 15);
     cout << endl <<endl;
     for (int i = 0; i < (width - 16) / 2; i++)
     {
@@ -235,12 +237,37 @@ void codelog :: homescreen()
         }
         for (int i = 0; i < 60; i++)
         {
-            cout << "=";
+            cout << char(196);
         }
-        cout << endl << endl;
+        cout << endl;
+        ifstream codelog_title ("titles/codelog_title.txt");
+        string title;
+        if (codelog_title.is_open())
+        {
+            while (!codelog_title.eof())
+            {
+                SetConsoleTextAttribute (h, 5);
+                getline (codelog_title, title);
+                for(int i = 0; i < (width - 42) / 2; i++)
+                {
+                    cout << " ";
+                }
+                cout << title << endl;
+                SetConsoleTextAttribute (h, 2);
+            }
+        }
+        codelog_title.close();
+        for (int i = 0; i < (width - 60) / 2; i++)
+        {
+            cout << " ";
+        }
+        for (int i = 0; i < 60; i++)
+        {
+            cout << char (196);
+        }
 
         //second row
-
+        /*
         for (int i = 0; i < (width - 8) / 2; i ++)
         {
             cout << " ";
@@ -267,6 +294,7 @@ void codelog :: homescreen()
         {
             cout << "=";
         }
+        */
         cout << endl << endl;
 
         //User options
@@ -302,7 +330,7 @@ void codelog :: homescreen()
 
         for (int i = 0; i < 60; i++)
         {
-            cout << "=";
+            cout << char (196);
         }
         cout << endl << endl;
 
@@ -310,12 +338,23 @@ void codelog :: homescreen()
         {
             cout << " ";
         }
-        cout << "Enter your choice: " <<endl;
-        for (int i = 0; i < (width - 60) / 2; i++)
+        cout << "Enter your choice: ";
+        cin >> ch;
+            while(!cin.good())
             {
-                cout << " ";
+                for (int i = 0; i < (width - 60) / 2; i++)
+                {
+                    cout << " ";
+                }
+                SetConsoleTextAttribute (h, 4);
+                cout << "ERR:"; 
+                SetConsoleTextAttribute (h, 2);
+                cout << " Enter integer only: ";
+                cin.clear();
+                cin.ignore();
+                cin >> ch;
+                cout << endl;
             }
-            cin >> ch;
             switch (ch)
             {
                 case 1: write_details(); 
@@ -333,15 +372,20 @@ void codelog :: homescreen()
                 for (int i = 0; i < (width - 60) / 2; i++)
                 {
                     cout << " ";
-                } 
+                }
+                SetConsoleTextAttribute (h, 4); 
                 cout << "Exiting...";
+                SetConsoleTextAttribute (h, 2);
                 break;
                 default: 
                 for (int i = 0; i < (width - 60) / 2; i++)
                 {
                     cout << " ";
                 }
-                cout << "Invalid Choice, Input again..." <<endl;
+                SetConsoleTextAttribute (h, 4);
+                cout << "Invalid Choice, Input again...";
+                SetConsoleTextAttribute (h, 2);
+                getch();
             } 
     } while (ch != 4);
 }
