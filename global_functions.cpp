@@ -204,6 +204,8 @@ void forgot_password ()
             output_file << (*it).phoneNumber<<endl;
             output_file << (*it).username<<endl;
             output_file << (*it).password<<endl;
+            output_file << (*it).num_of_followers << endl;
+            output_file << (*it).num_of_following << endl;
         }
         output_file.close();
     }
